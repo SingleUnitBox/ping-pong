@@ -8,26 +8,24 @@ DIRECTIONS = {
     'RIGHT': 0
 }
 
-class Paddle:
+class Paddle(Turtle):
     def __init__(self, x_coord):
-        self.paddle = []
+        super().__init__()
         self.create_paddle(x_coord)
 
 
     def create_paddle(self, x_coord):
-        for position in STARTING_Y_POSITION:
-            paddle = Turtle("square")
-            paddle.color("white")
-            paddle.penup()
-            paddle.seth(DIRECTIONS['UP'])
-            paddle.goto(x_coord, position)
-            self.paddle.append(paddle)
+        self.shape("square")
+        self.color("white")
+        self.shapesize(stretch_len=5, stretch_wid=1)
+        self.penup()
+        self.setheading(DIRECTIONS['UP'])
+        self.goto(x_coord, 0)
+
 
     def move_up(self):
-        for segment in self.paddle:
-            segment.forward(MOVE_DISTANCE)
+        self.forward(MOVE_DISTANCE)
 
     def move_down(self):
-        for segment in self.paddle:
-            segment.backward(MOVE_DISTANCE)
+        self.backward(MOVE_DISTANCE)
 
